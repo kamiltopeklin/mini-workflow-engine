@@ -11,6 +11,7 @@
     "build:backend": "cd backend && npm run build",
     "build:frontend": "cd frontend && npm run build",
     "build:deploy": "npm run build:frontend && node scripts/copy-public.cjs && npm run build:backend",
+    "start": "cd backend && node dist/index.js",
     "start:prod": "cd backend && node dist/index.js",
     "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install"
   },
