@@ -1,0 +1,94 @@
+.workflow-editor {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.editor-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editor-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-group input[type="text"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.form-group input[type="text"]:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+.form-group input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.trigger-url-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.trigger-url-input {
+  flex: 1;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+.help-text {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  background-color: #ffebee;
+  border-radius: 4px;
+}
+
+.editor-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.editor-container:focus-within {
+  border-color: #1976d2;
+}

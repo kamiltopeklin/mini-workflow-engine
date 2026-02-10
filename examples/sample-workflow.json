@@ -1,0 +1,32 @@
+{
+  "name": "Unlock Alert",
+  "enabled": true,
+  "steps": [
+    {
+      "type": "filter",
+      "conditions": [
+        { "path": "type", "op": "eq", "value": "lock.unlock" },
+        { "path": "success", "op": "eq", "value": false }
+      ]
+    },
+    {
+      "type": "transform",
+      "ops": [
+        { "op": "default", "path": "actor_name", "value": "Unknown" },
+        { "op": "template", "to": "title", "template": "Event {{type}} by {{actor_name}}" }
+      ]
+    },
+    {
+      "type": "http_request",
+      "method": "POST",
+      "url": "https://hooks.slack.com/services/XXX/YYY/ZZZ",
+      "headers": { "Content-Type": "application/json" },
+      "body": {
+        "mode": "custom",
+        "value": { "text": "{{title}}" }
+      },
+      "timeoutMs": 2000,
+      "retries": 3
+    }
+  ]
+}

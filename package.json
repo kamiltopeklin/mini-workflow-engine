@@ -1,0 +1,20 @@
+{
+  "name": "mini-workflow-engine",
+  "version": "1.0.0",
+  "description": "A mini workflow automation engine similar to Zapier",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:deploy": "npm run build:frontend && node scripts/copy-public.cjs && npm run build:backend",
+    "start:prod": "cd backend && node dist/index.js",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
