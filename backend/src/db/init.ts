@@ -1,7 +1,4 @@
 import { Pool } from 'pg';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 if (!process.env.DATABASE_URL) {
   throw new Error('DATABASE_URL environment variable is required');
@@ -9,11 +6,14 @@ if (!process.env.DATABASE_URL) {
 
 export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+  
+  ssl: process.env.NODE_ENV === 'production'
+    ? { rejectUnauthorized: false }
+    : false,
 });
 
 export async function initDatabase() {
   try {
-
     await pool.query(`
       CREATE TABLE IF NOT EXISTS workflows (
         id VARCHAR(255) PRIMARY KEY,
@@ -40,15 +40,18 @@ export async function initDatabase() {
     `);
 
     await pool.query(`
-      CREATE INDEX IF NOT EXISTS idx_workflow_runs_workflow_id ON workflow_runs(workflow_id)
+      CREATE INDEX IF NOT EXISTS idx_workflow_runs_workflow_id
+      ON workflow_runs(workflow_id)
     `);
 
     await pool.query(`
-      CREATE INDEX IF NOT EXISTS idx_workflow_runs_status ON workflow_runs(status)
+      CREATE INDEX IF NOT EXISTS idx_workflow_runs_status
+      ON workflow_runs(status)
     `);
 
     await pool.query(`
-      CREATE INDEX IF NOT EXISTS idx_workflows_trigger_path ON workflows(trigger_path)
+      CREATE INDEX IF NOT EXISTS idx_workflows_trigger_path
+      ON workflows(trigger_path)
     `);
 
     console.log('Database initialized successfully');
