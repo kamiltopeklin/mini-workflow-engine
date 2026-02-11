@@ -10,7 +10,7 @@ import { initDatabase } from './db/init';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = Number(process.env.PORT) || 3001;
 const isProduction = process.env.NODE_ENV === 'production';
 
 app.use(cors());
@@ -18,6 +18,13 @@ app.use(express.json());
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
+});
+
+app.get('/', (_req, res) => {
+  res.json({
+    service: 'mini-workflow-engine',
+    status: 'running',
+  });
 });
 
 app.use('/api/workflows', workflowRoutes);
